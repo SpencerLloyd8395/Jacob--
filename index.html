@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Data Recovery Terminal</title>
+
+<style>
+body {
+    background: #000;
+    color: #00ff41;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 18px;
+    margin: 0;
+    padding: 30px;
+}
+
+#terminal {
+    white-space: pre-wrap;
+}
+
+input {
+    background: #000;
+    color: #00ff41;
+    border: none;
+    outline: none;
+    font: inherit;
+    width: 70%;
+    caret-color: #00ff41;
+}
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+<input id="input" style="display:none;" autocomplete="off">
+
+<script>
+
+const t = document.getElementById("terminal");
+const input = document.getElementById("input");
+
+const sleep = ms =>
+    new Promise(resolve => setTimeout(resolve, ms));
+
+async function type(text, speed = 25) {
+
+    for (const char of text) {
+        t.textContent += char;
+        await sleep(speed);
+    }
+
+    t.textContent += "\n";
+
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+async function progress(label) {
+
+    t.textContent += "\n" + label + " [";
+
+    for (let i = 0; i < 25; i++) {
+        t.textContent += "█";
+        await sleep(65);
+    }
+
+    t.textContent += "] 100%\n";
+}
+
+async function start() {
+
+    await type("SECURE DATA RECOVERY TERMINAL v6.2", 40);
+    await type("======================================", 15);
+
+    await sleep(500);
+
+    await type("[+] Establishing remote connection...");
+    await sleep(700);
+
+    await type("[+] Device detected.");
+    await sleep(500);
+
+    await type("[+] Connection established.");
+
+    await progress("AUTHENTICATING");
+
+    await sleep(600);
+
+    await type("\nIDENTIFY USER:");
+
+    t.textContent += "> ";
+
+    input.style.display = "inline";
+    input.focus();
+}
+
+input.addEventListener("keydown", async function(e) {
+
+    if (e.key !== "Enter") return;
+
+    const name = input.value.trim();
+
+    t.textContent += name + "\n";
+
+    input.style.display = "none";
+
+    if (name.toLowerCase() !== "jacob") {
+
+        await sleep(700);
+
+        await type("\n[!] UNKNOWN USER");
+        await type("[!] ACCESS DENIED");
+
+        await sleep(500);
+
+        await type("\nYou're not Jacob :)");
+
+        return;
+    }
+
+    await sleep(500);
+
+    await type("\n[+] IDENTITY CONFIRMED");
+    await type("[+] USER: JACOB");
+
+    await sleep(700);
+
+    await type("\nBEGINNING FILE SYSTEM SCAN...");
+
+    await progress("SCANNING");
+
+    await sleep(500);
+
+    await type("\nSEARCHING INDEXED DIRECTORIES...");
+    await sleep(400);
+
+    await type("C:\\Users\\Jacob\\Videos\\");
+    await type("C:\\Users\\Jacob\\YouTube\\");
+    await type("C:\\Users\\Jacob\\Projects\\");
+    await type("C:\\Users\\Jacob\\Porsche\\");
+    await type("C:\\Users\\Jacob\\Porsche\\Cayman_S\\");
+    await type("C:\\Users\\Jacob\\Porsche\\Race_Build\\");
+
+    await sleep(800);
+
+    await type("\n[!] HIGH VALUE CONTENT DETECTED");
+
+    await sleep(700);
+
+    await type("\nMATCHING KEYWORDS:");
+
+    await type("  PORSCHE");
+    await type("  CAYMAN S");
+    await type("  YOUTUBE");
+    await type("  RACE BUILD");
+    await type("  CAR VIDEOS");
+
+    await sleep(700);
+
+    await type("\nFILES FOUND: 847");
+
+    await sleep(900);
+
+    await type("\nINITIATING RETRIEVAL...");
+
+    await progress("RETRIEVING");
+
+    await sleep(500);
+
+    // Fake rapidly scrolling terminal data
+
+    for (let i = 0; i < 28; i++) {
+
+        let code = "";
+
+        for (let j = 0; j < 70; j++) {
+
+            code += String.fromCharCode(
+                33 + Math.floor(Math.random() * 90)
+            );
+        }
+
+        t.textContent += code + "\n";
+
+        window.scrollTo(0, document.body.scrollHeight);
+
+        await sleep(35);
+    }
+
+    await sleep(800);
+
+    await type("\n[+] ARCHIVE CREATED");
+
+    await type(
+        "[+] Porsche_Cayman_S_YouTube_Content.zip"
+    );
+
+    await sleep(700);
+
+    await type("\nUPLOADING TO REMOTE SERVER...");
+
+    await progress("TRANSFER");
+
+    await sleep(1000);
+
+    t.textContent = "";
+
+    await type(
+        "========================================",
+        15
+    );
+
+    await type(
+        "          DATA TRANSFER COMPLETE",
+        45
+    );
+
+    await type(
+        "========================================",
+        15
+    );
+
+    await sleep(1200);
+
+    await type("\nFILES RETRIEVED: 847");
+    await type("ARCHIVE: Porsche_Cayman_S_YouTube_Content.zip");
+
+    await sleep(1200);
+
+    await type("\nJACOB...");
+
+    await sleep(1500);
+
+    await type("\nYOUR PORSCHE FILES HAVE BEEN STOLEN.", 60);
+
+    await sleep(2500);
+
+    await type("\n\njk :)", 100);
+
+    await sleep(900);
+
+    await type("\nNothing was actually accessed.", 45);
+
+    await sleep(700);
+
+    await type("\nMaybe lock your computer next time lol", 55);
+
+    await sleep(700);
+
+    await type("\n- Spencer was here :)", 70);
+}
+
+);
+
+start();
+
+</script>
+
+</body>
+</html>
